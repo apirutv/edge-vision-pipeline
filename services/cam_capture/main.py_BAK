@@ -1,4 +1,3 @@
-# services/cam_capture/main.py
 from __future__ import annotations
 import asyncio, random, time
 from pathlib import Path
@@ -7,9 +6,6 @@ import yaml
 import uuid
 from common.bus import EventBus
 from common.schemas import FrameCaptured
-from common.logging import get_logger
-
-log = get_logger("cam_capture")
 
 # Simple ffmpeg snapshotter: grabs 1 frame and writes to jpeg
 async def grab_snapshot(rtsp_url: str, out_path: Path, timeout_sec: int = 8) -> None:
@@ -39,8 +35,6 @@ async def capture_loop(cam: dict, frames_dir: Path, bus: EventBus, stream_name: 
     interval = int(cam.get("interval_sec", 10))
     cam_id = cam["id"]
     rtsp = cam["rtsp"]
-
-    log.info(f"Capture loop started for camera={cam_id} interval_sec={interval}")
     while True:
         t0 = time.time()
         try:
@@ -51,6 +45,7 @@ async def capture_loop(cam: dict, frames_dir: Path, bus: EventBus, stream_name: 
 
             await grab_snapshot(rtsp, jpg_path)
 
+            # width/height will be 0 for now; we'll fill later with PIL
             event = FrameCaptured(
                 camera_id=cam_id,
                 frame_id=frame_id,
@@ -61,44 +56,43 @@ async def capture_loop(cam: dict, frames_dir: Path, bus: EventBus, stream_name: 
             ).model_dump()
 
             await bus.xadd_json(stream_name, event)
-            log.info(f"Captured frame camera={cam_id} file={jpg_path}")
         except Exception as e:
-            log.error(f"Capture error camera={cam_id}: {e}")
+            print(f"[cam_capture] error camera={cam_id}: {e}")
         # jitter ±5%
         jitter = interval * 0.05 * (2*random.random() - 1)
         await asyncio.sleep(max(1, interval + jitter - (time.time() - t0)))
 
 async def main(config_path: str = "config/config.yaml"):
-    log.info("cam_capture starting…")
     cfg = yaml.safe_load(open(config_path, "r"))
     frames_dir = Path(cfg.get("runtime", {}).get("frames_dir", "data/frames"))
     redis_url = cfg.get("runtime", {}).get("redis_url", "redis://127.0.0.1:6379/0")
     stream_captured = cfg.get("runtime", {}).get("stream_captured", "frames.captured")
 
+    #-----
+    
     cameras = cfg.get("cameras", [])
     if not cameras:
-        log.error("No cameras in config")
         raise SystemExit("No cameras in config")
+
+    bus = await EventBus(redis_url).connect()
 
     # Only run active cameras with valid RTSP
     selected = [c for c in cameras if c.get("active", True) and c.get("rtsp")]
     if not selected:
-        log.error("No active cameras with RTSP found")
         raise SystemExit("No active cameras with RTSP found")
 
-    log.info("Starting cameras: " + ",".join(c["id"] for c in selected))
-
-    bus = await EventBus(redis_url).connect()
+    print("[cam_capture] starting cameras:", ",".join(c["id"] for c in selected))
 
     tasks = [
         asyncio.create_task(capture_loop(c, frames_dir, bus, stream_captured))
         for c in selected
     ]
+
+    # -----
     try:
         await asyncio.gather(*tasks)
     finally:
         await bus.close()
-        log.info("cam_capture stopped")
 
 if __name__ == "__main__":
     asyncio.run(main())

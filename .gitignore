@@ -2,9 +2,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.log
-*.db
 .venv/
 data/
+logs/
 masks/
 floorplans/
-
