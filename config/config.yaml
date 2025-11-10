@@ -1,0 +1,255 @@
+zones:
+  - id: front_gate
+    name: "Front Gate Zone"
+    floor: "G"
+    type: "entrance"
+    description: "Gate area covering pedestrian and vehicle entry"
+    floorplan_ref: "floorplans/house-G.png"
+    polygon:
+      - [0.05, 0.70]
+      - [0.35, 0.70]
+      - [0.35, 0.98]
+      - [0.05, 0.98]
+    tags: ["entrance","driveway","front gate"]
+
+  - id: pool_deck
+    name: "Pool & Deck"
+    floor: "G"
+    type: "pool"
+    description: "Swimming pool and surrounding deck area"
+    floorplan_ref: "floorplans/house-G.png"
+    polygon:
+      - [0.40, 0.40]
+      - [0.95, 0.40]
+      - [0.95, 0.85]
+      - [0.40, 0.85]
+    tags: ["pool","deck","outdoor","recreation"]
+
+cameras:
+  - id: dining
+    name: "Dining Room"
+    rtsp: "rtsp://admin:admin12345@192.168.20.30:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: true
+    location: "indoor"
+    description: "Covers dining area and adjacent living space"
+    angle: "Wide-angle, top corner view"
+    roi_mask: "masks/dining.png"
+    priority: 5
+    semantic_tags: ["indoor","dining","living-area"]
+    observed_zones: ["dining_area"]
+
+  - id: fence_right
+    name: "Fence - Right"
+    rtsp: "rtsp://admin:admin12345@192.168.20.35:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "outdoor"
+    description: "Covers right-side fence and perimeter walkway"
+    angle: "Diagonal, mid-height facing fence line"
+    roi_mask: "masks/fence_right.png"
+    priority: 3
+    semantic_tags: ["fence","perimeter","outdoor"]
+    observed_zones: ["side_fence_right"]
+
+  - id: fence_right_2
+    name: "Fence - Right 2"
+    rtsp: "rtsp://admin:admin12345@192.168.20.31:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "outdoor"
+    description: "Covers extended right-side fence section near corner"
+    angle: "Mid-level, angled toward rear perimeter"
+    roi_mask: "masks/fence_right_2.png"
+    priority: 4
+    semantic_tags: ["fence","corner","security"]
+    observed_zones: ["side_fence_corner"]
+
+  - id: garage
+    name: "Garage"
+    rtsp: "rtsp://admin:admin12345@192.168.20.22:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 30
+    active: false
+    location: "outdoor"
+    description: "Monitors garage door, driveway entry and vehicle area"
+    angle: "Front view, slight downward tilt"
+    roi_mask: "masks/garage.png"
+    priority: 1
+    semantic_tags: ["garage","driveway","vehicle"]
+    observed_zones: ["garage_entry"]
+
+  - id: gate_left
+    name: "Gate - Left"
+    rtsp: "rtsp://admin:admin12345@192.168.20.29:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 10
+    active: false
+    location: "outdoor"
+    description: "Covers front gate and driveway entrance area"
+    angle: "Diagonal, outward toward street, slight top-down"
+    roi_mask: "masks/gate_left.png"
+    priority: 1
+    semantic_tags: ["entrance","driveway","street-facing"]
+    observed_zones: ["front_gate"]
+
+  - id: gate_right
+    name: "Gate - Right"
+    rtsp: "rtsp://admin:admin12345@192.168.20.21:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 10
+    active: false
+    location: "outdoor"
+    description: "Covers right-side of front gate area and adjacent path"
+    angle: "Diagonal, facing toward main road"
+    roi_mask: "masks/gate_right.png"
+    priority: 1
+    semantic_tags: ["entrance","gate","security"]
+    observed_zones: ["front_gate_right"]
+
+  - id: hall_fl1
+    name: "Hall - Floor 1"
+    rtsp: "rtsp://admin:admin12345@192.168.20.32:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "indoor"
+    description: "Covers hallway and stairs at ground level"
+    angle: "Top corner, downward angle"
+    roi_mask: "masks/hall_fl1.png"
+    priority: 4
+    semantic_tags: ["hallway","stairs","indoor"]
+    observed_zones: ["hall_floor1"]
+
+  - id: hall_fl2
+    name: "Hall - Floor 2"
+    rtsp: "rtsp://admin:admin12345@192.168.20.26:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "indoor"
+    description: "Monitors upper hallway area and stair landing"
+    angle: "Wide-angle from upper corner"
+    roi_mask: "masks/hall_fl2.png"
+    priority: 5
+    semantic_tags: ["hallway","landing","indoor"]
+    observed_zones: ["hall_floor2"]
+
+  - id: hall_fl3
+    name: "Hall - Floor 3"
+    rtsp: "rtsp://admin:admin12345@192.168.20.23:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "indoor"
+    description: "Covers top floor hallway and staircase access"
+    angle: "Corner ceiling angle"
+    roi_mask: "masks/hall_fl3.png"
+    priority: 5
+    semantic_tags: ["hallway","top-floor","indoor"]
+    observed_zones: ["hall_floor3"]
+
+  - id: kitchen_back
+    name: "Kitchen - Back"
+    rtsp: "rtsp://admin:admin12345@192.168.20.28:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 60
+    active: false
+    location: "indoor"
+    description: "Covers kitchen area and rear access door"
+    angle: "High corner, wide-angle coverage"
+    roi_mask: "masks/kitchen_back.png"
+    priority: 3
+    semantic_tags: ["kitchen","rear-door","indoor"]
+    observed_zones: ["kitchen_backdoor"]
+
+  - id: laundry
+    name: "Laundry Room"
+    rtsp: "rtsp://admin:admin12345@192.168.20.27:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 120
+    active: false
+    location: "indoor"
+    description: "Monitors laundry area and utility section"
+    angle: "Side view, mid-height camera"
+    roi_mask: "masks/laundry.png"
+    priority: 4
+    semantic_tags: ["laundry","utility","indoor"]
+    observed_zones: ["laundry_room"]
+
+  - id: pool
+    name: "Pool"
+    rtsp: "rtsp://admin:admin12345@192.168.20.24:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 300
+    active: false
+    location: "outdoor"
+    description: "Overlooks pool and deck area"
+    angle: "High corner, wide-angle covering entire pool"
+    roi_mask: "masks/pool.png"
+    priority: 2
+    semantic_tags: ["pool","deck","recreation"]
+    observed_zones: ["pool_deck"]
+
+  - id: pool_2
+    name: "Pool 2"
+    rtsp: "rtsp://admin:admin12345@192.168.20.2:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 300
+    active: false
+    location: "outdoor"
+    description: "Covers second pool angle near sitting area"
+    angle: "High side view covering opposite end of pool"
+    roi_mask: "masks/pool_2.png"
+    priority: 2
+    semantic_tags: ["pool","deck","sitting-area"]
+    observed_zones: ["pool_zone_2"]
+
+  - id: roof_deck
+    name: "Roof Deck"
+    rtsp: "rtsp://admin:admin12345@192.168.20.25:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 300
+    active: false
+    location: "outdoor"
+    description: "Monitors roof deck and relaxation area"
+    angle: "Wide-angle from top corner"
+    roi_mask: "masks/roof_deck.png"
+    priority: 3
+    semantic_tags: ["roof","deck","recreation"]
+    observed_zones: ["roof_area"]
+
+  - id: roof_deck_2
+    name: "Roof Deck 2"
+    rtsp: "rtsp://admin:admin12345@192.168.20.34:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 300
+    active: false
+    location: "outdoor"
+    description: "Secondary coverage of roof deck with alternate angle"
+    angle: "Diagonal opposite of primary roof cam"
+    roi_mask: "masks/roof_deck_2.png"
+    priority: 3
+    semantic_tags: ["roof","deck","outdoor"]
+    observed_zones: ["roof_area_secondary"]
+
+  - id: street
+    name: "Street View"
+    rtsp: "rtsp://admin:admin12345@192.168.20.33:554/cam/realmonitor?channel=1&subtype=0"
+    interval_sec: 10
+    active: false
+    location: "outdoor"
+    description: "Covers street in front of property and vehicle movement"
+    angle: "Outward facing toward street with wide view"
+    roi_mask: "masks/street.png"
+    priority: 1
+    semantic_tags: ["street","traffic","security"]
+    observed_zones: ["street_front"]
+
+change_detection:
+  phash_hamming_min: 10
+  ssim_max: 0.92
+
+detection:
+  model: "hailo_yolo"
+  classes_pass: ["person","dog","cat","car","motorcycle","bus","truck","bicycle"]
+  conf_min: 0.5
+
+lvm:
+  base_url: "http://ollama-host:11434"
+  model: "qwen2-vl:3b-instruct"
+  timeout_sec: 10
+  retries: 1
+
+runtime:
+  redis_url: "redis://127.0.0.1:6379/0"
+  frames_dir: "data/frames"
+  stream_captured: "frames.captured"
