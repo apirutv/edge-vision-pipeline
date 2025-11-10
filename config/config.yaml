@@ -29,7 +29,7 @@ cameras:
   - id: dining
     name: "Dining Room"
     rtsp: "rtsp://admin:admin12345@192.168.20.30:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
+    interval_sec: 60
     active: true
     location: "indoor"
     description: "Covers dining area and adjacent living space"
@@ -81,7 +81,7 @@ cameras:
   - id: gate_left
     name: "Gate - Left"
     rtsp: "rtsp://admin:admin12345@192.168.20.29:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
+    interval_sec: 60
     active: true
     location: "outdoor"
     description: "Covers front gate and driveway entrance area"
@@ -236,7 +236,7 @@ cameras:
 
 change_detection:
   phash_hamming_min: 10
-  ssim_max: 0.92
+  ssim_max: 0.90
 
 detection:
   model: "hailo_yolo"
@@ -253,3 +253,4 @@ runtime:
   redis_url: "redis://127.0.0.1:6379/0"
   frames_dir: "data/frames"
   stream_captured: "frames.captured"
+  stream_changed: "frames.changed"

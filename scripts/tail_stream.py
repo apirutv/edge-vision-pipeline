@@ -1,12 +1,13 @@
 # scripts/tail_stream.py
-import asyncio, json
+import os, sys, asyncio, json
 from redis import asyncio as aioredis
 from common.logging import get_logger
 
-STREAM = "frames.captured"   # match config.runtime.stream_captured
-GROUP = "dev"
-CONSUMER = "tail01"
-REDIS_URL = "redis://127.0.0.1:6379/0"
+DEFAULT_STREAM = "frames.captured"
+STREAM = os.environ.get("STREAM", sys.argv[1] if len(sys.argv) > 1 else DEFAULT_STREAM)
+GROUP = os.environ.get("GROUP", "dev")
+CONSUMER = os.environ.get("CONSUMER", "tail01")
+REDIS_URL = os.environ.get("REDIS_URL", "redis://127.0.0.1:6379/0")
 
 log = get_logger("tail_stream")
 
@@ -15,7 +16,6 @@ async def ensure_group(r):
         await r.xgroup_create(STREAM, GROUP, id="$", mkstream=True)
         log.info(f"Created consumer group '{GROUP}' on stream '{STREAM}'")
     except Exception:
-        # group probably exists
         pass
 
 async def main():
