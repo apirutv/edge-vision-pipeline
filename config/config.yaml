@@ -42,8 +42,8 @@ cameras:
   - id: fence_right
     name: "Fence - Right"
     rtsp: "rtsp://admin:admin12345@192.168.20.35:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Covers right-side fence and perimeter walkway"
     angle: "Diagonal, mid-height facing fence line"
@@ -55,8 +55,8 @@ cameras:
   - id: fence_right_2
     name: "Fence - Right 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.31:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Covers extended right-side fence section near corner"
     angle: "Mid-level, angled toward rear perimeter"
@@ -68,8 +68,8 @@ cameras:
   - id: garage
     name: "Garage"
     rtsp: "rtsp://admin:admin12345@192.168.20.22:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Monitors garage door, driveway entry and vehicle area"
     angle: "Front view, slight downward tilt"
@@ -94,8 +94,8 @@ cameras:
   - id: gate_right
     name: "Gate - Right"
     rtsp: "rtsp://admin:admin12345@192.168.20.21:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Covers right-side of front gate area and adjacent path"
     angle: "Diagonal, facing toward main road"
@@ -107,8 +107,8 @@ cameras:
   - id: hall_fl1
     name: "Hall - Floor 1"
     rtsp: "rtsp://admin:admin12345@192.168.20.32:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "indoor"
     description: "Covers hallway and stairs at ground level"
     angle: "Top corner, downward angle"
@@ -120,8 +120,8 @@ cameras:
   - id: hall_fl2
     name: "Hall - Floor 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.26:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "indoor"
     description: "Monitors upper hallway area and stair landing"
     angle: "Wide-angle from upper corner"
@@ -133,8 +133,8 @@ cameras:
   - id: hall_fl3
     name: "Hall - Floor 3"
     rtsp: "rtsp://admin:admin12345@192.168.20.23:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "indoor"
     description: "Covers top floor hallway and staircase access"
     angle: "Corner ceiling angle"
@@ -146,8 +146,8 @@ cameras:
   - id: kitchen_back
     name: "Kitchen - Back"
     rtsp: "rtsp://admin:admin12345@192.168.20.28:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "indoor"
     description: "Covers kitchen area and rear access door"
     angle: "High corner, wide-angle coverage"
@@ -159,8 +159,8 @@ cameras:
   - id: laundry
     name: "Laundry Room"
     rtsp: "rtsp://admin:admin12345@192.168.20.27:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "indoor"
     description: "Monitors laundry area and utility section"
     angle: "Side view, mid-height camera"
@@ -172,8 +172,8 @@ cameras:
   - id: pool
     name: "Pool"
     rtsp: "rtsp://admin:admin12345@192.168.20.24:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Overlooks pool and deck area"
     angle: "High corner, wide-angle covering entire pool"
@@ -185,8 +185,8 @@ cameras:
   - id: pool_2
     name: "Pool 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.2:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Covers second pool angle near sitting area"
     angle: "High side view covering opposite end of pool"
@@ -198,8 +198,8 @@ cameras:
   - id: roof_deck
     name: "Roof Deck"
     rtsp: "rtsp://admin:admin12345@192.168.20.25:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Monitors roof deck and relaxation area"
     angle: "Wide-angle from top corner"
@@ -211,8 +211,8 @@ cameras:
   - id: roof_deck_2
     name: "Roof Deck 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.34:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Secondary coverage of roof deck with alternate angle"
     angle: "Diagonal opposite of primary roof cam"
@@ -224,8 +224,8 @@ cameras:
   - id: street
     name: "Street View"
     rtsp: "rtsp://admin:admin12345@192.168.20.33:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 300
-    active: false
+    interval_sec: 60
+    active: true
     location: "outdoor"
     description: "Covers street in front of property and vehicle movement"
     angle: "Outward facing toward street with wide view"
@@ -239,18 +239,32 @@ change_detection:
   ssim_max: 0.90
 
 detection:
-  model: "hailo_yolo"
+  detection:
+  mode: "hailo"                 # "mock" | "hailo"
+  model: "hailo_yolo"          # for reference/logging
   classes_pass: ["person","dog","cat","car","motorcycle","bus","truck","bicycle"]
   conf_min: 0.5
+  # hailo integration (optional, if using a wrapper script)
+  hailo_cli: "/home/apirut/python_projects/hailo-rpi5-examples/venv_hailo_rpi_examples/bin/python plugins/detection_from_mp4_overlay_hef.py"
+  hailo_args: "--hef /usr/local/hailo/resources/models/hailo8/yolov8m.hef --max-frames 1"
 
 lvm:
-  base_url: "http://ollama-host:11434"
-  model: "qwen2-vl:3b-instruct"
-  timeout_sec: 10
-  retries: 1
+  model: "qwen3-vl:8b"             # your reference default
+  ip: "192.168.0.171"                  # Ollama server IP
+  port: 11434                      # Ollama port
+  timeout_sec: 60                  # generous timeout for vision
+  retries: 1                       # retry once on failure
+  #base_url: "http://ollama-host:11434"
+  max_tokens: 200
+  # optional: system prompt for grounding
+  system: "You are a factual CCTV summarizer. Avoid speculation. If unsure, say 'unclear'."
 
 runtime:
   redis_url: "redis://127.0.0.1:6379/0"
   frames_dir: "data/frames"
   stream_captured: "frames.captured"
   stream_changed: "frames.changed"
+  stream_detected: "frames.detected"
+  stream_described: "frames.described"
+  outputs_dir: "outputs"           # already present
+  
