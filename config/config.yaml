@@ -267,4 +267,21 @@ runtime:
   stream_detected: "frames.detected"
   stream_described: "frames.described"
   outputs_dir: "outputs"           # already present
+
+uploader:
+  runtime:
+    redis_url: "redis://127.0.0.1:6379/0"
+    batch_size: 8
+    block_ms: 5000
+    min_idle_ms: 5000
+    drain_history: true
+
+  files:
+    outputs_base: "outputs"   # matches your repo
+
+  upload:
+    http:
+      url: "http://192.168.0.171:8000/api/ingest/frame"
+      timeout_sec: 30
+
   
