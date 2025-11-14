@@ -29,7 +29,7 @@ cameras:
   - id: dining
     name: "Dining Room"
     rtsp: "rtsp://admin:admin12345@192.168.20.30:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Covers dining area and adjacent living space"
@@ -42,7 +42,7 @@ cameras:
   - id: fence_right
     name: "Fence - Right"
     rtsp: "rtsp://admin:admin12345@192.168.20.35:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers right-side fence and perimeter walkway"
@@ -55,7 +55,7 @@ cameras:
   - id: fence_right_2
     name: "Fence - Right 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.31:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers extended right-side fence section near corner"
@@ -68,7 +68,7 @@ cameras:
   - id: garage
     name: "Garage"
     rtsp: "rtsp://admin:admin12345@192.168.20.22:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Monitors garage door, driveway entry and vehicle area"
@@ -81,7 +81,7 @@ cameras:
   - id: gate_left
     name: "Gate - Left"
     rtsp: "rtsp://admin:admin12345@192.168.20.29:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers front gate and driveway entrance area"
@@ -94,7 +94,7 @@ cameras:
   - id: gate_right
     name: "Gate - Right"
     rtsp: "rtsp://admin:admin12345@192.168.20.21:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers right-side of front gate area and adjacent path"
@@ -107,7 +107,7 @@ cameras:
   - id: hall_fl1
     name: "Hall - Floor 1"
     rtsp: "rtsp://admin:admin12345@192.168.20.32:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Covers hallway and stairs at ground level"
@@ -120,7 +120,7 @@ cameras:
   - id: hall_fl2
     name: "Hall - Floor 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.26:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Monitors upper hallway area and stair landing"
@@ -133,7 +133,7 @@ cameras:
   - id: hall_fl3
     name: "Hall - Floor 3"
     rtsp: "rtsp://admin:admin12345@192.168.20.23:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Covers top floor hallway and staircase access"
@@ -146,7 +146,7 @@ cameras:
   - id: kitchen_back
     name: "Kitchen - Back"
     rtsp: "rtsp://admin:admin12345@192.168.20.28:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Covers kitchen area and rear access door"
@@ -159,7 +159,7 @@ cameras:
   - id: laundry
     name: "Laundry Room"
     rtsp: "rtsp://admin:admin12345@192.168.20.27:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "indoor"
     description: "Monitors laundry area and utility section"
@@ -172,7 +172,7 @@ cameras:
   - id: pool
     name: "Pool"
     rtsp: "rtsp://admin:admin12345@192.168.20.24:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Overlooks pool and deck area"
@@ -185,7 +185,7 @@ cameras:
   - id: pool_2
     name: "Pool 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.2:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers second pool angle near sitting area"
@@ -198,7 +198,7 @@ cameras:
   - id: roof_deck
     name: "Roof Deck"
     rtsp: "rtsp://admin:admin12345@192.168.20.25:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Monitors roof deck and relaxation area"
@@ -211,7 +211,7 @@ cameras:
   - id: roof_deck_2
     name: "Roof Deck 2"
     rtsp: "rtsp://admin:admin12345@192.168.20.34:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Secondary coverage of roof deck with alternate angle"
@@ -224,7 +224,7 @@ cameras:
   - id: street
     name: "Street View"
     rtsp: "rtsp://admin:admin12345@192.168.20.33:554/cam/realmonitor?channel=1&subtype=0"
-    interval_sec: 60
+    interval_sec: 5
     active: true
     location: "outdoor"
     description: "Covers street in front of property and vehicle movement"
